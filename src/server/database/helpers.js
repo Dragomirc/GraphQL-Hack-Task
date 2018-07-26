@@ -1,0 +1,15 @@
+import sql from "mssql";
+import config from "../../../config.env";
+
+const generalQuery = async yourQuery => {
+  try {
+    const pool = await sql.connect(config);
+    const result = await pool.request().query(yourQuery);
+    return result.recordset;
+  } catch (err) {
+    console.log("error", err);
+  }
+  sql.on(`error`, err => console.log(err));
+};
+
+export default generalQuery;

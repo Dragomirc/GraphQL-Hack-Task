@@ -7,8 +7,10 @@ module.exports = {
   entry: "./src/client/index.js",
   output: {
     path: path.join(__dirname, outputDirectory),
-    filename: "bundle.js"
+    filename: "[name].[hash].js",
+    publicPath: "/"
   },
+  mode: "development",
   module: {
     rules: [
       {
@@ -23,13 +25,6 @@ module.exports = {
         use: ["style-loader", "css-loader"]
       }
     ]
-  },
-  devServer: {
-    port: 3000,
-    open: true,
-    proxy: {
-      "/api": "http://localhost:8000"
-    }
   },
   plugins: [
     new CleanWebpackPlugin([outputDirectory]),
