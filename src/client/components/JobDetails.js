@@ -6,7 +6,7 @@ class JobDetails extends Component {
   render() {
     const { job } = this.props.data;
     if (!job) {
-      return <div>Loading...</div>;
+      return <div />;
     }
     const {
       Job_Title,
@@ -15,7 +15,6 @@ class JobDetails extends Component {
       Salary_From_Per_Annum,
       Salary_To_PerAnnum
     } = job;
-    console.log(job);
     return (
       <div className="container">
         <h2>

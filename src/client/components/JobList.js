@@ -13,7 +13,7 @@ class JobList extends Component {
   render() {
     const { data } = this.props;
     if (data.loading) {
-      return <div>Loading...</div>;
+      return <div />;
     }
     return (
       <div className="container">
