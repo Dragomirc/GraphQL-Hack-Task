@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "client": "webpack --watch ",
+    "client": "rimraf dist && webpack --watch ",
     "server": "nodemon --exec babel-node src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,10 +12,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "apollo-boost": "^0.1.12",
     "express": "^4.16.3",
+    "express-graphql": "^0.6.12",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.9.2",
     "mssql": "^4.1.0",
     "react": "^16.4.0",
-    "react-dom": "^16.4.0"
+    "react-apollo": "^2.1.9",
+    "react-dom": "^16.4.0",
+    "react-router-dom": "^4.3.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -30,6 +36,7 @@
     "eslint-config-airbnb": "^16.1.0",
     "html-webpack-plugin": "^3.2.0",
     "nodemon": "^1.17.5",
+    "rimraf": "^2.6.2",
     "style-loader": "^0.21.0",
     "webpack": "^4.9.1",
     "webpack-cli": "^2.1.4",
