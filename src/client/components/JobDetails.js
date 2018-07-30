@@ -13,7 +13,7 @@ class JobDetails extends Component {
       Town_Location,
       Description,
       Salary_From_Per_Annum,
-      Salary_To_PerAnnum
+      Salary_To_Per_Annum
     } = job;
     return (
       <div className="container">
@@ -22,7 +22,7 @@ class JobDetails extends Component {
         </h2>
 
         <div>
-          <b>Salary:</b> {Salary_From_Per_Annum} - {Salary_To_PerAnnum}
+          <b>Salary:</b> {Salary_From_Per_Annum} - {Salary_To_Per_Annum}
         </div>
         <div>
           <b>Location:</b> {Town_Location}
@@ -35,7 +35,7 @@ class JobDetails extends Component {
     );
   }
 }
-const fetchSong = gql`
+const fetchJob = gql`
   query FetchJob($id: Int!) {
     job(id: $id) {
       Job_ID
@@ -43,11 +43,11 @@ const fetchSong = gql`
       Town_Location
       Description
       Salary_From_Per_Annum
-      Salary_To_PerAnnum
+      Salary_To_Per_Annum
     }
   }
 `;
 
-export default graphql(fetchSong, {
+export default graphql(fetchJob, {
   options: props => ({ variables: { id: props.match.params.id } })
 })(JobDetails);

@@ -8,7 +8,7 @@ const JobType = new GraphQLObjectType({
     Town_Location: { type: GraphQLString },
     Description: { type: GraphQLString },
     Salary_From_Per_Annum: { type: GraphQLInt },
-    Salary_To_PerAnnum: { type: GraphQLInt }
+    Salary_To_Per_Annum: { type: GraphQLInt }
   }
 });
 
