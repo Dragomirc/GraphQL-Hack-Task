@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import gql from "graphql-tag";
-
 import { Query } from "react-apollo";
+
 const fetchJobs = gql`
   {
     jobs {
@@ -11,6 +11,7 @@ const fetchJobs = gql`
     }
   }
 `;
+
 const JobList = props => {
   const renderJobs = jobs =>
     jobs.map(({ Job_ID, Job_Title }) => (

@@ -11,13 +11,6 @@ import { generalQuery } from "../services/helpers";
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
-    // jobs: {
-    //   type: new GraphQLList(JobType),
-    //   resolve: async () => {
-    //     const res = await generalQuery(`select top 10 * from Jobs`);
-    //     return res;
-    //   }
-    // },
     job: {
       type: JobType,
       args: {
