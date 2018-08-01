@@ -1,7 +1,7 @@
 import "../../../public/styles.css";
 import React from "react";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
-import JobListPage from "./JobListPage";
+import JobListPage from "./JobListPage/JobListPage";
 import asyncComponent from "./hoc/asyncComponent";
 
 const AsyncJobDetails = asyncComponent(() => {
