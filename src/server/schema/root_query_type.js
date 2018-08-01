@@ -34,6 +34,7 @@ const RootQuery = new GraphQLObjectType({
         }
       },
       resolve: async (root, { first = 10, skip = 0 }) => {
+        console.log("Skip", skip);
         const res = await generalQuery(
           `Select  * from Jobs  ORDER BY Job_ID OFFSET  ${skip} ROWS FETCH NEXT ${first} ROWS ONLY`
         );
