@@ -1,5 +1,4 @@
 const path = require("path");
-const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const outputDirectory = "dist";
@@ -11,6 +10,7 @@ module.exports = {
     filename: "[name].[hash].js",
     publicPath: "/"
   },
+
   mode: "development",
   module: {
     rules: [
