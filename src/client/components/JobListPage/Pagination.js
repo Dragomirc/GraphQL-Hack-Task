@@ -1,16 +1,17 @@
 import React from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 const fetchJobCount = gql`
   {
-    count
+    jobCount
   }
 `;
 const Pagination = props => {
+  const JOBS_PER_PAGE = 10;
   const renderPageButtons = count => {
-    let numberOfPages = count / 10;
+    let numberOfPages = count / JOBS_PER_PAGE;
     let pageButtons = numberOfPages > 10 ? 10 : numberOfPages;
 
     return [...Array(pageButtons)].map((_, index) => {
@@ -23,13 +24,29 @@ const Pagination = props => {
     });
   };
 
+  const _nextPage = jobCount => {
+    const page = parseInt(props.match.params.page, 10);
+    if (page <= jobCount / JOBS_PER_PAGE) {
+      const nextPage = page + 1;
+      props.history.push(`/new/${nextPage}`);
+    }
+  };
+  const _previousPage = () => {
+    const page = parseInt(props.match.params.page, 10);
+    if (page > 1) {
+      const previousPage = page - 1;
+      props.history.push(`/new/${previousPage}`);
+    }
+  };
   return (
     <Query query={fetchJobCount}>
-      {({ loading, data: { count } }) => {
+      {({ loading, data: { jobCount } }) => {
         if (loading) return <div />;
         return (
           <div>
-            <ul>{renderPageButtons(count)}</ul>
+            <div onClick={_previousPage}>Previous</div>
+            <ul>{renderPageButtons(jobCount)}</ul>
+            <div onClick={() => _nextPage(jobCount)}>Next</div>
           </div>
         );
       }}
@@ -37,4 +54,4 @@ const Pagination = props => {
   );
 };
 
-export default Pagination;
+export default withRouter(Pagination);

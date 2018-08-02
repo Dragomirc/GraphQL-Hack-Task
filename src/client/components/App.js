@@ -5,7 +5,7 @@ import JobListPage from "./JobListPage/JobListPage";
 import asyncComponent from "./hoc/asyncComponent";
 
 const AsyncJobDetails = asyncComponent(() => {
-  return import("./JobDetails");
+  return import("./Jobdetails/JobDetails");
 });
 const App = () => {
   return (
