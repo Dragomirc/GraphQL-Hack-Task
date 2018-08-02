@@ -1,17 +1,18 @@
-import "../../../public/styles.css";
+import "../../../public/styles.scss";
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
-import JobList from "./JobList";
+import { BrowserRouter, Route, Redirect } from "react-router-dom";
+import JobListPage from "./JobListPage/JobListPage";
 import asyncComponent from "./hoc/asyncComponent";
 
 const AsyncJobDetails = asyncComponent(() => {
-  return import("./JobDetails");
+  return import("./Jobdetails/JobDetails");
 });
 const App = () => {
   return (
     <BrowserRouter>
       <div>
-        <Route path="/" exact component={JobList} />
+        <Route path="/" exact render={() => <Redirect to="/new/1" />} />
+        <Route path="/new/:page" component={JobListPage} />
         <Route path="/job/:id" component={AsyncJobDetails} />
       </div>
     </BrowserRouter>

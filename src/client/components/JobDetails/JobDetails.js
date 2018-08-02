@@ -33,14 +33,12 @@ const JobDetails = props => {
             <h2>
               <b>Title:</b> {Job_Title}
             </h2>
-
             <div>
               <b>Salary:</b> {Salary_From_Per_Annum} - {Salary_To_Per_Annum}
             </div>
             <div>
               <b>Location:</b> {Town_Location}
             </div>
-
             <p>
               <b>Description:</b> {Description}
             </p>

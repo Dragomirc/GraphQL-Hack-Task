@@ -39,6 +39,15 @@ const RootQuery = new GraphQLObjectType({
         );
         return res;
       }
+    },
+    jobCount: {
+      type: GraphQLInt,
+      resolve: async () => {
+        const res = await generalQuery(
+          `SELECT COUNT(Job_ID) as count FROM JOBS`
+        );
+        return res[0].count;
+      }
     }
   }
 });

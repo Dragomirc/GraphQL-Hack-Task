@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 
 const fetchJobs = gql`
-  {
-    jobs {
+  query FetchJobs($skip: Int) {
+    jobs(skip: $skip) {
       Job_ID
       Job_Title
     }
@@ -20,13 +20,14 @@ const JobList = props => {
       </Link>
     ));
 
+  const pagesToSkip = parseInt(props.match.params.page, 10) * 10;
   return (
-    <Query query={fetchJobs}>
+    <Query query={fetchJobs} variables={{ skip: pagesToSkip }}>
       {({ loading, data: { jobs } }) => {
         if (loading) return <div />;
         return (
           <div className="container">
-            <h3> Jobs:</h3>
+            <h3> Job :</h3>
             <ul className="list-group">{renderJobs(jobs)}</ul>
           </div>
         );
@@ -35,4 +36,4 @@ const JobList = props => {
   );
 };
 
-export default JobList;
+export default withRouter(JobList);
