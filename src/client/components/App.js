@@ -1,4 +1,4 @@
-import "../../../public/styles.css";
+import "../../../public/styles.scss";
 import React from "react";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import JobListPage from "./JobListPage/JobListPage";

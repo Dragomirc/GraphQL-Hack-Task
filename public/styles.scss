@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h3 {
+  text-align: center;
+  margin: 1rem;
+}
+
+.list-group-item {
+  cursor: pointer;
+  text-decoration: none;
+  color: #000;
+}
+.list-group-item:hover {
+  background-color: #d9d9e0;
+}
+
+.container {
+  margin-top: 30px;
+  color: #000000c7;
+  background: #fff;
+  padding: 2rem;
+  border: 1px rgba(0, 0, 0, 0.125) solid;
+}
+.active {
+  color: red;
+}
+.pagination {
+  position: fixed;
+  bottom: 15%;
+  width: 100%;
+  justify-content: center;
+
+  div {
+    margin: 0 1rem;
+  }
+  a {
+    margin: 0 0.2rem;
+  }
+  div:hover,
+  a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}

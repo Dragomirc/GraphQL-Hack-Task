@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { Link, withRouter } from "react-router-dom";
@@ -11,14 +11,33 @@ const fetchJobCount = gql`
 const Pagination = props => {
   const JOBS_PER_PAGE = 10;
   const renderPageButtons = count => {
-    let numberOfPages = count / JOBS_PER_PAGE;
-    let pageButtons = numberOfPages > 10 ? 10 : numberOfPages;
+    const numberOfPages = Math.ceil(count / JOBS_PER_PAGE);
+    const pageButtons = numberOfPages > 20 ? 20 : numberOfPages;
+    const currentPage = parseInt(props.match.params.page, 10);
+    let startPage, endPage;
+    if (numberOfPages <= 20) {
+      startPage = 1;
+      endPage = numberOfPages;
+    } else {
+      if (currentPage <= 11) {
+        startPage = 1;
+        endPage = 20;
+      } else if (currentPage + 9 >= numberOfPages) {
+        startPage = numberOfPages - 19;
+        endPage = numberOfPages;
+      } else {
+        startPage = currentPage - 10;
+        endPage = currentPage + 9;
+      }
+    }
 
-    return [...Array(pageButtons)].map((_, index) => {
-      let pageNumber = index + 1;
+    return [...Array(endPage + 1 - startPage).keys()].map(i => {
+      const pageNumber = startPage + i;
       return (
         <Link key={pageNumber} to={`/new/${pageNumber}`}>
-          <span>{pageNumber}</span>
+          <span className={currentPage === pageNumber ? "active" : ""}>
+            {pageNumber}
+          </span>
         </Link>
       );
     });
@@ -26,7 +45,7 @@ const Pagination = props => {
 
   const _nextPage = jobCount => {
     const page = parseInt(props.match.params.page, 10);
-    if (page <= jobCount / JOBS_PER_PAGE) {
+    if (page <= Math.ceil(jobCount / JOBS_PER_PAGE)) {
       const nextPage = page + 1;
       props.history.push(`/new/${nextPage}`);
     }
@@ -43,7 +62,7 @@ const Pagination = props => {
       {({ loading, data: { jobCount } }) => {
         if (loading) return <div />;
         return (
-          <div>
+          <div className="pagination">
             <div onClick={_previousPage}>Previous</div>
             <ul>{renderPageButtons(jobCount)}</ul>
             <div onClick={() => _nextPage(jobCount)}>Next</div>
