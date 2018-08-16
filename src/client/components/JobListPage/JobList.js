@@ -27,7 +27,7 @@ const JobList = props => {
         if (loading) return <div />;
         return (
           <div className="container">
-            <h3> Job :</h3>
+            <h3> Jobs :</h3>
             <ul className="list-group">{renderJobs(jobs)}</ul>
           </div>
         );
